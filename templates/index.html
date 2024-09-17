@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Sentiment Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sentence Sentiment Classifier</h1>
+            <!-- Display the image based on classification result -->
+            <img src="{{ url_for('static', filename=image_name) }}" alt="Sentiment Image" class="sentiment-image">
+        </div>
+
+        <form action="/classify" method="POST" class="form">
+            <label for="sentence">Enter a sentence to classify:</label>
+            <textarea name="sentence" id="sentence" placeholder="Type your sentence here..." required></textarea>
+            <button type="submit">Classify</button>
+        </form>
+
+        {% if sentence and sentiment %}
+        <div class="result">
+            <h2>Results</h2>
+            <p><strong>Sentence:</strong> {{ sentence }}</p>
+            <p><strong>Sentiment:</strong> {{ sentiment }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
